@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+<button>查询</button>
+<% for(var key in data){%>
+   <p>菜单:<%=data[key].menu_name%></p>
+<%}%>
+<script>
+    $("button").click(function(){
+        $.ajax({
+            type:"post",
+            url:"/postData",
+            success: function (data) {
+                alert(data);
+            }
+        })
+
+
+    });
+
+</script>
+</body>
+</html>

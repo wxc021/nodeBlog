@@ -1,0 +1,14 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "license": "ISC",
+  "description": "nodejs firtst",
+  "dependencies":{
+    "express":"latest",
+    "ejs":"latest",
+    "mysql":"latest",
+    "body-parser":"latest",
+    "cookie-parser":"latest",
+    "express-session":"latest"
+  }
+}

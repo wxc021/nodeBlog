@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+    <title>博客首页</title>
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<!-- 头部开始 -->
+<div class="header">
+    <div class="header_con">
+        <div class="logo"><img src="/image/logo.1png"></div>
+        <div class="logon_reg">
+            <!--<a href="/login">登陆</a>-->
+            <!--<a href="/register">注册</a>-->
+            <a>用户名:<%=locals.user%> </a>
+            <a><%if(locals.admin=='1'){
+                    locals.admin='系统管理员';
+                }else{
+                    locals.admin='普通用户';
+                }%><%=locals.admin%>
+            </a>
+            <a href="/logout">退出</a>
+        </div>
+    </div>
+</div>
+<!-- 头部结束 -->
+<!-- 内容区域 开始 -->
+<div class="content">
+    <div class="con">
+        <!-- 左侧评论区 开始-->
+        <div class="con_left">
+            <h1 article-id="<%=data[0].id%>"><%=data[0].title%></h1>
+            <input type="hidden" id="atricleVal" value="<%=data[0].content%>">
+            <div class="atricle_content"></div>
+            <div class="upload_info">
+                <div class="upload_info_author">
+                    <span>作者:<label for=""><%=data[0].author%></label></span>
+                    <span class="create_time">发表于:<time><%=data[0].createtime%></time></span>
+                    <span><label for="">100</label>次阅读</span>
+                </div>
+                <div class="comment1">
+                    <span>评论(<label for="">3</label>)</span>
+                </div>
+            </div>
+            <!-- 评论输入框 -->
+            <div class="comment">
+                <div class="c_title">
+                    <span class="c_h">发表评论</span>
+                    <span id="num"><span id="text">还可以输入</span><em id="number">140</em>字</span>
+                </div>
+                <div class="contenttext">
+                    <textarea id="count"></textarea>
+                </div>
+                <div class="submitText">
+                    <div class="Expression">表情</div>
+                    <div class="submit" id="releaseBtn">发布</div>
+                    <div class="gif">
+                        <ul>
+                            <li class="ligif" title="微笑"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/5c/huanglianwx_thumb.gif"  alt=""></li>
+                            <li class="ligif" title="哈哈"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0b/tootha_thumb.gif"  alt=""></li>
+                            <li class="ligif" title="可爱"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6a/laugh.gif"  alt=""></li>
+                            <li class="ligif" title="可怜"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/14/tza_thumb.gif"  alt=""></li>
+                            <li class="ligif" title="微笑"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/5c/huanglianwx_thumb.gif"></li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="嘻嘻" action-data="insert=%5B%E5%98%BB%E5%98%BB%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0b/tootha_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="哈哈" action-data="insert=%5B%E5%93%88%E5%93%88%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6a/laugh.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="可爱" action-data="insert=%5B%E5%8F%AF%E7%88%B1%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/14/tza_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="可怜" action-data="insert=%5B%E5%8F%AF%E6%80%9C%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/af/kl_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="挖鼻" action-data="insert=%5B%E6%8C%96%E9%BC%BB%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0b/wabi_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="吃惊" action-data="insert=%5B%E5%90%83%E6%83%8A%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f4/cj_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="害羞" action-data="insert=%5B%E5%AE%B3%E7%BE%9E%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6e/shamea_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="挤眼" action-data="insert=%5B%E6%8C%A4%E7%9C%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c3/zy_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="闭嘴" action-data="insert=%5B%E9%97%AD%E5%98%B4%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/29/bz_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="鄙视" action-data="insert=%5B%E9%84%99%E8%A7%86%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/71/bs2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="爱你" action-data="insert=%5B%E7%88%B1%E4%BD%A0%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/lovea_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="泪" action-data="insert=%5B%E6%B3%AA%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9d/sada_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="偷笑" action-data="insert=%5B%E5%81%B7%E7%AC%91%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/19/heia_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="亲亲" action-data="insert=%5B%E4%BA%B2%E4%BA%B2%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8f/qq_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="生病" action-data="insert=%5B%E7%94%9F%E7%97%85%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b6/sb_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="太开心" action-data="insert=%5B%E5%A4%AA%E5%BC%80%E5%BF%83%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/58/mb_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="白眼" action-data="insert=%5B%E7%99%BD%E7%9C%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d9/landeln_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="右哼哼" action-data="insert=%5B%E5%8F%B3%E5%93%BC%E5%93%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/98/yhh_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="左哼哼" action-data="insert=%5B%E5%B7%A6%E5%93%BC%E5%93%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/zhh_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="嘘" action-data="insert=%5B%E5%98%98%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a6/x_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="衰" action-data="insert=%5B%E8%A1%B0%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/af/cry.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="委屈" action-data="insert=%5B%E5%A7%94%E5%B1%88%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/73/wq_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="吐" action-data="insert=%5B%E5%90%90%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9e/t_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="哈欠" action-data="insert=%5B%E5%93%88%E6%AC%A0%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/cc/haqianv2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="抱抱" action-data="insert=%5B%E6%8A%B1%E6%8A%B1%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/27/bba_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="怒" action-data="insert=%5B%E6%80%92%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/7c/angrya_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="疑问" action-data="insert=%5B%E7%96%91%E9%97%AE%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/5c/yw_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="馋嘴" action-data="insert=%5B%E9%A6%8B%E5%98%B4%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a5/cza_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="拜拜" action-data="insert=%5B%E6%8B%9C%E6%8B%9C%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/70/88_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="思考" action-data="insert=%5B%E6%80%9D%E8%80%83%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/e9/sk_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="汗" action-data="insert=%5B%E6%B1%97%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/24/sweata_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="困" action-data="insert=%5B%E5%9B%B0%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/kunv2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="睡" action-data="insert=%5B%E7%9D%A1%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/96/huangliansj_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="钱" action-data="insert=%5B%E9%92%B1%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/90/money_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="失望" action-data="insert=%5B%E5%A4%B1%E6%9C%9B%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/0c/sw_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="酷" action-data="insert=%5B%E9%85%B7%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/cool_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="色" action-data="insert=%5B%E8%89%B2%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/20/huanglianse_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="哼" action-data="insert=%5B%E5%93%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/49/hatea_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="鼓掌" action-data="insert=%5B%E9%BC%93%E6%8E%8C%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/36/gza_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="晕" action-data="insert=%5B%E6%99%95%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d9/dizzya_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="悲伤" action-data="insert=%5B%E6%82%B2%E4%BC%A4%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1a/bs_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="抓狂" action-data="insert=%5B%E6%8A%93%E7%8B%82%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/62/crazya_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="黑线" action-data="insert=%5B%E9%BB%91%E7%BA%BF%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/91/h_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="阴险" action-data="insert=%5B%E9%98%B4%E9%99%A9%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/yx_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="怒骂" action-data="insert=%5B%E6%80%92%E9%AA%82%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/60/numav2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="互粉" action-data="insert=%5B%E4%BA%92%E7%B2%89%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/89/hufen_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="心" action-data="insert=%5B%E5%BF%83%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/hearta_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="伤心" action-data="insert=%5B%E4%BC%A4%E5%BF%83%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ea/unheart.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="猪头" action-data="insert=%5B%E7%8C%AA%E5%A4%B4%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/58/pig.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="熊猫" action-data="insert=%5B%E7%86%8A%E7%8C%AB%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6e/panda_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="兔子" action-data="insert=%5B%E5%85%94%E5%AD%90%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/81/rabbit_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="ok" action-data="insert=%5Bok%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d6/ok_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="耶" action-data="insert=%5B%E8%80%B6%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d9/ye_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="good" action-data="insert=%5Bgood%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d8/good_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="NO" action-data="insert=%5BNO%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/ae/buyao_org.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="赞" action-data="insert=%5B%E8%B5%9E%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d0/z2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="来" action-data="insert=%5B%E6%9D%A5%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/come_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="弱" action-data="insert=%5B%E5%BC%B1%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d8/sad_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="草泥马" action-data="insert=%5B%E8%8D%89%E6%B3%A5%E9%A9%AC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/7a/shenshou_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="神马" action-data="insert=%5B%E7%A5%9E%E9%A9%AC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/60/horse2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="囧" action-data="insert=%5B%E5%9B%A7%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/15/j_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="浮云" action-data="insert=%5B%E6%B5%AE%E4%BA%91%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/bc/fuyun_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="给力" action-data="insert=%5B%E7%BB%99%E5%8A%9B%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/1e/geiliv2_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="围观" action-data="insert=%5B%E5%9B%B4%E8%A7%82%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/f2/wg_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="威武" action-data="insert=%5B%E5%A8%81%E6%AD%A6%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/70/vw_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="奥特曼" action-data="insert=%5B%E5%A5%A5%E7%89%B9%E6%9B%BC%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/bc/otm_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="礼物" action-data="insert=%5B%E7%A4%BC%E7%89%A9%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/c4/liwu_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="钟" action-data="insert=%5B%E9%92%9F%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/d3/clock_thumb.gif">
+                            </li>
+                            <li class="ligif" suda="key=pub_expression&amp;value=default" title="话筒" action-data="insert=%5B%E8%AF%9D%E7%AD%92%5D"
+                                action-type="select">
+                                <img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9f/huatongv2_thumb.gif">
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="comment_content">
+                <div class="con_title">
+                    <div class="con_wrap">
+                        <div class="all_comment">全部评论(<span id="commentNum">3</span>)</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 评论内容 -->
+            <div class="comment_text">
+                <div class="com_list">
+                    <div class="wrap_com_text"><a href="javascript:" class="com_username">嘻哈小C</a>：<span class="com_user_text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容....</span></div>
+                    <div class="comment_createtime">刚刚</div>
+                </div>
+                <div class="com_list">
+                    <div class="wrap_com_text"><a href="javascript:" class="com_username">嘻哈小C</a>：<span class="com_user_text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容....</span></div>
+                    <div class="comment_createtime">刚刚</div>
+                </div>
+                <div class="com_list">
+                    <div class="wrap_com_text"><a href="javascript:" class="com_username">嘻哈小C</a>：<span class="com_user_text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容....</span></div>
+                    <div class="comment_createtime">刚刚</div>
+                </div>
+                <div class="load_list">加载更多...</div>
+            </div>
+        </div>
+        <!-- 左侧评论区 结束 -->
+        <!-- 右侧公告区 开始 -->
+        <div class="con_right">
+            <div class="notice">
+                <h3>公告<i class="iconfont">&#xe654;</i></h3>
+                <p>开放编辑，不断升华，编程词典等待您的加入！</p>
+            </div>
+            <div class="notice">
+                <h3>本月热门<i class="iconfont">&#xe606;</i></h3>
+                <p>开放编辑，不断升华，编程词典等待您的加入！</p>
+            </div>
+            <div class="notice">
+                <h3>本月精华<i class="iconfont jh">&#xe603;</i></h3>
+                <p>开放编辑，不断升华，编程词典等待您的加入！</p>
+            </div>
+            <div class="notice weibo">
+                <h3>官方微博<i class="iconfont">&#xe66e;</i></h3>
+                <div class="wb_img"><a href="javascript:"><img src="/image/bg.jpg"></a></div>
+                <div class="wb_con">
+                    <p> XSoftlab北京 海淀区 </p>
+                    <div class="btn"><a href="#"><i class="iconfont add">&#xe622;</i>加关注</a></div>
+                </div>
+            </div>
+            <div class="like">
+                <h3>猜你喜欢<i class="iconfont">&#xe66e;</i></h3>
+                <div class="img_show">
+                    <img class="show_big_img" src="/image/1.jpg"/>
+                    <ul class="list_img">
+                        <li><img src="/image/1.jpg"></li>
+                        <li><img src="/image/2.jpg"></li>
+                        <li><img src="/image/3.jpg"></li>
+                        <li class="last"><img src="/image/4.jpg"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧公告区 结束 -->
+    </div>
+</div>
+<div style="clear:both"></div>
+<div class="footer">
+    <p>京ICP备13053109号</p>
+    <p>Copyright© 2014 xsoftlab.net | 联系邮箱: service@xsoftlab.net | 官方QQ群: 384161896</p>
+    <p>友情链接： <a href="javascript:">安卓开发者中文网</a> <a href="javascript:">深度学习论坛</a><a href="javascript:"> 词库网</a><a href="javascript:"> 蜂窝网</a></p>
+</div>
+<div class="backTop">
+    <i class="iconfont">&#xe62a;</i>
+</div>
+<!-- 内容区域 结束 -->
+<script type="text/javascript" src="/js/index.js"></script>
+<script>
+    $(function(){
+        //显示文章内容
+        $(".atricle_content").html($("#atricleVal").val());
+        //初始化评论内容
+        $.ajax({
+            type:"post",
+            url:"/article/comment",
+            data:{
+                articleid:$("h1").attr("article-id"),
+                commentContent:$("#count").val()
+            },
+            success:function(data){
+                var content = data.data;
+                $("#commentNum").html(content.length);
+                console.log(content);
+
+                var html = '';
+                for(var i=0;i<content.length;i++){
+                    html+="<div class='com_list'>"+
+                            "<div class='wrap_com_text'><a href='javascript:' class='com_username'>"+content[i].username+"</a>：<span class='com_user_text'>"+content[i].content+"</span></div>"+
+                            "<div class='comment_createtime'>"+content[i].createtime+"</div>"+
+                            "</div>"
+                }
+
+                $(".comment_text").empty().append(html);
+
+
+            }
+        })
+        //提交评论
+        $("#releaseBtn").on("click",function(){
+            if(!$("#count").val()==""){
+                $.ajax({
+                    type:"post",
+                    url:"/article/comment",
+                    data:{
+                        articleid:$("h1").attr("article-id"),
+                        commentContent:$("#count").val()
+                    },
+                    success:function(data){
+                        var content = data.data;
+                        $("#commentNum").html(content.length);
+                        console.log(content);
+
+                        var html = '';
+                        for(var i=0;i<content.length;i++){
+                            html+="<div class='com_list'>"+
+                                    "<div class='wrap_com_text'><a href='javascript:' class='com_username'>"+content[i].username+"</a>：<span class='com_user_text'>"+content[i].content+"</span></div>"+
+                                    "<div class='comment_createtime'>"+content[i].createtime+"</div>"+
+                                    "</div>"
+                        }
+
+                        $(".comment_text").empty().append(html);
+
+
+                    }
+                })
+            }
+
+        });
+
+
+    })
+</script>
+
+</body>
+</html>
+
+
+
+
