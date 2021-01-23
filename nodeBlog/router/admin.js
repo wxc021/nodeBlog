@@ -13,7 +13,6 @@ router.use((req,res,next)=>{
     }else{
         res.send('请用管理员账号登录');
     }
-
 });
 router.get("/",(req,res)=>{
     "use strict";
